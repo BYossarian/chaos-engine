@@ -1,11 +1,33 @@
 
 'use strict';
 
+// var KEY_BINDINGS = {
+//     'ArrowLeft': 'rotateLeft',
+//     'ArrowRight': 'rotateRight',
+//     'ArrowUp': 'forward',
+//     'ArrowDown': 'backwards',
+//     'a': 'rotateLeft',
+//     'd': 'rotateRight',
+//     'w': 'forward',
+//     's': 'backwards'
+// };
 var KEY_BINDINGS = {
-    'ArrowLeft': 'rotateLeft',
-    'ArrowRight': 'rotateRight',
-    'ArrowUp': 'forward',
-    'ArrowDown': 'backwards'
+    // left arrow
+    '37': 'rotateLeft',
+    // right arrow
+    '39': 'rotateRight',
+    // up arrow
+    '38': 'forward',
+    // down arrow
+    '40': 'backwards',
+    // a
+    '65': 'rotateLeft',
+    // d
+    '68': 'rotateRight',
+    // w
+    '87': 'forward',
+    // s
+    '83': 'backwards'
 };
 var RESOLUTION = {
     WIDTH: 640,
@@ -39,7 +61,7 @@ var glassTexture = new Bitmap('./dist/glass.png', 250, 250, true);
 
 // our coordinate system starts at the top-left, and 
 // it's size is determined by the world's cellSize
-var grid = Uint8Array.from([
+var grid = [
     1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
     1, 0, 0, 0, 1, 1, 1, 0, 1, 1, 1, 0, 1, 1, 1, 1, 0, 1, 1, 1,
     1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
@@ -50,7 +72,7 @@ var grid = Uint8Array.from([
     1, 1, 0, 1, 0, 1, 0, 3, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1,
     1, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1,
     1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1
-    ]);
+    ];
 
 function mainLoop(now) {
 
@@ -83,16 +105,18 @@ function mainLoop(now) {
 }
 
 document.body.addEventListener('keydown', function(e) {
-    keyStates[KEY_BINDINGS[e.key]] = true;
+    var key = e.which || e.keyCode;
+    keyStates[KEY_BINDINGS[key]] = true;
 }, false);
 
 document.body.addEventListener('keyup', function(e) {
-    keyStates[KEY_BINDINGS[e.key]] = false;
+    var key = e.which || e.keyCode;
+    keyStates[KEY_BINDINGS[key]] = false;
 }, false);
 
 canvas.width = RESOLUTION.WIDTH;
 canvas.height = RESOLUTION.HEIGHT;
-world = new World(grid, 20, 10, 10, 10, skyBox, [ wallTexture1, wallTexture2, glassTexture ]);
+world = new World(grid, 20, 10, 10, 10, skyBox, 'rgb(29, 35, 14)', [ wallTexture1, wallTexture2, glassTexture ]);
 camera = new Camera(15, 15, 5, Math.PI, RESOLUTION.WIDTH / 2, 1.5, world, canvas);
 
 lastLoopTime = performance.now();

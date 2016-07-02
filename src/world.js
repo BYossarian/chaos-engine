@@ -1,7 +1,7 @@
 
 'use strict';
 
-function World(grid, width, height, cellSize, wallHeight, skyBox, wallTextures) {
+function World(grid, width, height, cellSize, wallHeight, skyBox, floor, wallTextures) {
 
     this.grid = grid;
     this.width = width;
@@ -9,8 +9,9 @@ function World(grid, width, height, cellSize, wallHeight, skyBox, wallTextures) 
     this.cellSize = cellSize;
     this.wallHeight = wallHeight;
 
-    this.wallTextures = wallTextures;
     this.skyBox = skyBox;
+    this.floor = floor;
+    this.wallTextures = wallTextures;
 
 }
 

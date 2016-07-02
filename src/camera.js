@@ -52,13 +52,13 @@ Camera.prototype.draw = function() {
     ctx.clearRect(0, 0, canvasWidth, canvasHeight);
 
     // floor:
-    ctx.fillStyle = 'rgb(29, 35, 14)';
+    ctx.fillStyle = world.floor;
     ctx.fillRect(0, canvasHeight/2, canvasWidth, canvasHeight/2);
 
     // skybox
     ctx.drawImage(sky.img, 0, 0, sky.width, sky.height, 0, 0, canvasWidth, canvasHeight/2);
 
-    // TODO: allow adjustable camera height
+    // REVIEW: allow adjustable camera height?
 
     // TODO: pretty sure this can be massively optimised - given any two rays who both 
     // collide with the same wall, then any rays between them must also collide with 
@@ -113,6 +113,7 @@ Camera.prototype.move = function(delta) {
     // around corners that it otherwise wouldn't be able to make.
     // actually, maybe the inclusion of a camera radius solves 
     // this? need to think about it.
+    // REVIEW: should collision logic be part of Camera?
 
     if (!this.world.getCellAt(newX + (Math.sign(xDelta) * this.radius), this.y)) {
         this.x = newX;
@@ -129,11 +130,11 @@ Camera.prototype.rotate = function(angleDelta) {
     this.direction += angleDelta;
 
     if (this.direction < 0) {
-        this.direction += TWO_PI;
+        this.direction = TWO_PI - (Math.abs(this.direction) % TWO_PI);
     }
 
     if (this.direction > TWO_PI) {
-        this.direction -= TWO_PI;
+        this.direction = this.direction % TWO_PI;
     }
 
 };
