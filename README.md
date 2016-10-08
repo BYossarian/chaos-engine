@@ -1,12 +1,14 @@
 # chaos-engine
-A 2.5D Javascript game engine
+
+A Javascript raycasting engine
 
 ### TO RUN DEMO:
 
-
 `browserify demo/demo.js > dist/demo.js`
 
-`cp demo/img/* dist`
+`mkdir dist/img && cp demo/img/* dist/img`
+
+`cp demo/index.html dist`
 
 Then run local server.
 
@@ -15,8 +17,4 @@ Then run local server.
 
 -> sprites
 
--> interactive walls (e.g. switches on walls)
-
--> moveable walls
-
--> HUD
+-> proper skybox

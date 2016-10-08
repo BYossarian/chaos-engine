@@ -3,17 +3,16 @@
 
 var TWO_PI = 2 * Math.PI;
 
-// x, y, height and direction specify the position and direction of the camera 
+// x, y, and direction specify the position and direction of the camera 
 // focalLength is in canvas pixels (i.e. same units as the canvas width/height)
 // radius is the size/radius of the in-world object representing the camera
 //      (used for wall collision detection)
 // world is the World instance that the camera is viewing
 // canvas is the canvas that this camera draws to
-function Camera(x, y, height, direction, focalLength, radius, world, canvas) {
+function Camera(x, y, direction, focalLength, radius, world, canvas) {
     
     this.x = x;
     this.y = y;
-    this.height = height;
     this.direction = direction;
 
     this.focalLength = focalLength;
@@ -32,7 +31,6 @@ Camera.prototype.draw = function() {
     var ctx = this.ctx;
     var canvasWidth = this.canvas.width;
     var canvasHeight = this.canvas.height;
-    var height = this.height;
     var rayDirection = 0;
     var wallDrawHeight = 0;
     var walls = null;
@@ -43,7 +41,6 @@ Camera.prototype.draw = function() {
     var focalLength = this.focalLength;
     var direction = this.direction;
     var world = this.world;
-    var wallTextures = world.wallTextures;
     var sky = world.skyBox;
     var texture = null;
     var wallsIndex = 0;
@@ -58,7 +55,7 @@ Camera.prototype.draw = function() {
     // skybox
     ctx.drawImage(sky.img, 0, 0, sky.width, sky.height, 0, 0, canvasWidth, canvasHeight/2);
 
-    // REVIEW: allow adjustable camera height?
+    // TODO: allow adjustable camera height?
 
     // TODO: pretty sure this can be massively optimised - given any two rays who both 
     // collide with the same wall, then any rays between them must also collide with 

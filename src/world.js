@@ -58,7 +58,6 @@ World.prototype.findRayWallIntersectionDistance = function(x, y, theta) {
     var cellValue = 0;
 
     var walls = [];
-    var textures = this.wallTextures;
     var texture = null;
     var previouslyTransparentTexture = null;
 

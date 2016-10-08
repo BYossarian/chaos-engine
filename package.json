@@ -1,0 +1,24 @@
+{
+  "name": "chaos-engine",
+  "version": "1.0.0",
+  "description": "A JS raycaster",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/BYossarian/chaos-engine.git"
+  },
+  "author": "Ben Jackson",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/BYossarian/chaos-engine/issues"
+  },
+  "homepage": "https://github.com/BYossarian/chaos-engine",
+  "devDependencies": {
+    "eslint-formatter-pretty": "^1.0.1",
+    "gulp": "^3.9.1",
+    "gulp-eslint": "^3.0.1"
+  }
+}
